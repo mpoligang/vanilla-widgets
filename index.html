@@ -1,0 +1,128 @@
+<div id="widget-modal-dialog"></div>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="styles.css"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Vanilla Modal Dialog Widget</h1>
+
+    <widget-modal-dialog id="widget" title="Modal Dialog Widget Title">
+      <div class="modal-footer" slot="modalFooter">
+        <div>
+          <widget-button
+            id="invia"
+            outline="true"
+            label="annulla"
+          ></widget-button>
+          <widget-button id="invia" label="conferma"></widget-button>
+        </div>
+      </div>
+    </widget-modal-dialog>
+
+    <widget-modal-dialog id="widget-custom-header">
+      <div class="row w-100 m-0 justify-content-end" slot="modalFooter">
+        <div class="col-auto">
+          <widget-button
+            id="invia"
+            outline="true"
+            label="annulla"
+          ></widget-button>
+        </div>
+        <div class="col-auto pr-0">
+          <widget-button id="invia" label="conferma"></widget-button>
+        </div>
+      </div>
+    </widget-modal-dialog>
+
+    <div style="margin-top: 1rem;">
+      <widget-button
+        outline="true"
+        size="sm"
+        id="medium"
+        label="medium"
+        style="margin-right: 1rem;"
+      ></widget-button>
+
+      <widget-button
+        outline="true"
+        size="sm"
+        id="large"
+        label="large"
+        style="margin-right: 1rem;"
+      ></widget-button>
+
+      <widget-button
+        outline="true"
+        size="sm"
+        id="extraLarge"
+        label="extra large"
+        style="margin-right: 1rem;"
+      ></widget-button>
+
+      <widget-button
+        outline="true"
+        size="sm"
+        id="fullScreen"
+        label="full screen"
+        style="margin-right: 1rem;"
+      ></widget-button>
+
+      <widget-button
+        outline="true"
+        size="sm"
+        id="customHeader"
+        label="custom-header"
+        style="margin-right: 1rem;"
+      ></widget-button>
+    </div>
+    <script
+      type="module"
+      src="/node_modules/qilab-widgets/dist/widgets.js"
+    ></script>
+
+    <script type="module">
+      let form = {
+        text: undefined
+      };
+
+      document.getElementById("medium").addEventListener("click", () => {
+        const item = document.querySelector("#widget");
+        item.mobile = false;
+        item.size = "md";
+        item.openModal();
+      });
+
+      document.getElementById("large").addEventListener("click", () => {
+        const item = document.querySelector("#widget");
+        item.mobile = false;
+        item.size = "lg";
+        item.openModal();
+      });
+
+      document.getElementById("extraLarge").addEventListener("click", () => {
+        const item = document.querySelector("#widget");
+        item.mobile = false;
+        item.size = "lg";
+        item.openModal();
+      });
+
+      document.getElementById("fullScreen").addEventListener("click", () => {
+        const item = document.querySelector("#widget");
+        item.mobile = true;
+        item.openModal();
+      });
+
+      document.getElementById("customHeader").addEventListener("click", () => {
+        const item = document.querySelector("#widget-custom-header");
+        item.openModal();
+      });
+    </script>
+  </body>
+</html>

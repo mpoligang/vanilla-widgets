@@ -1,0 +1,107 @@
+<div id="widget-text-input"></div>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="styles.css"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Vanilla Input Percentile Widget</h1>
+    <h3>Allowed only number from 0 to 100</h3>
+    <widget-input-percentile
+      required="true"
+      label="Input percentile"
+      name="percentile"
+      id="widget"
+      minValue="3"
+      maxValue="10"
+    ></widget-input-percentile>
+
+    <div style="margin-top: 1rem;">
+      <widget-button
+        outline="true"
+        size="sm"
+        id="showValue"
+        label="show value"
+        style="margin-right: 1rem;"
+      ></widget-button>
+      <widget-button
+        outline="true"
+        size="sm"
+        id="disabled"
+        label="Disabled"
+        style="margin-right: 1rem;"
+      ></widget-button>
+
+      <widget-button
+        outline="true"
+        size="sm"
+        id="readonly"
+        label="read only"
+        style="margin-right: 1rem;"
+      ></widget-button>
+
+      <widget-button
+        outline="true"
+        size="sm"
+        id="validation"
+        label="Validation"
+        style="margin-right: 1rem;"
+      ></widget-button>
+    </div>
+    <script
+      type="module"
+      src="/node_modules/qilab-widgets/dist/widgets.js"
+    ></script>
+
+    <script type="module">
+      var validationsMsg = {
+        msgMaxError: "Valore massimo 10%",
+        msgMinError: "Valore massimo 3%",
+        msgRequired: "Campo Obbligatorio"
+      };
+
+      let form = {
+        float: undefined
+      };
+
+      const inputs = document.querySelectorAll("#widget");
+      inputs.forEach((item) => {
+        item.validationMsg = validationsMsg;
+      });
+
+      document
+        .getElementById("widget")
+        .addEventListener("valueChange", (event) => {
+          form = JSON.parse(
+            JSON.stringify({ ...form, [event.detail.name]: event.detail.value })
+          );
+        });
+
+      document.getElementById("validation").addEventListener("click", () => {
+        const item = document.querySelector("#widget");
+        item.hasError();
+      });
+
+      document.getElementById("readonly").addEventListener("click", () => {
+        const item = document.querySelector("#widget");
+        item.readonly = !item.readonly;
+      });
+
+      document.getElementById("showValue").addEventListener("click", () => {
+        console.log(form);
+      });
+
+      document.getElementById("disabled").addEventListener("click", () => {
+        const item = document.querySelector("#widget");
+        item.invalidField = false;
+        item.disabled = !item.disabled;
+      });
+    </script>
+  </body>
+</html>
